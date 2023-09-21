@@ -1,6 +1,6 @@
 import { makeAutoObservable } from "mobx";
 
-class AppStore {
+export class AppStore {
   data: string = "";
 
   constructor() {
@@ -11,6 +11,3 @@ class AppStore {
     this.data = value;
   }
 }
-
-const appStore = new AppStore();
-export default appStore;

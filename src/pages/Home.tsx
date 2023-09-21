@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import { observer } from "mobx-react-lite";
-import appStore from "../store/AppStore";
+import { useAppStore } from "../store/AppStoreProvider";
 
 function Home() {
+  const store = useAppStore();
   const [inputValue, setInputValue] = useState("");
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -10,7 +11,7 @@ function Home() {
   };
 
   const handleSaveData = () => {
-    appStore.setData(inputValue);
+    store.setData(inputValue);
   };
 
   return (
