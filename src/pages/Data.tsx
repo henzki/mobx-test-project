@@ -6,8 +6,18 @@ function Data() {
   const store = useAppStore();
   return (
     <div>
-      <h2>Data</h2>
-      <p>Tallennettu data: {store.data}</p>
+      <h1>Another Page</h1>
+      <div>
+        <h2>Customer Data</h2>
+        <p>Name: {store.customerData.name}</p>
+        <p>Email: {store.customerData.email}</p>
+      </div>
+      <div>
+        <h2>Product Data</h2>
+        <p>ID: {store.productData.id}</p>
+        <p>Name: {store.productData.name}</p>
+        <p>Price: {store.productData.price}</p>
+      </div>
     </div>
   );
 }

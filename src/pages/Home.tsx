@@ -1,26 +1,69 @@
 import React, { useState } from "react";
-import { observer } from "mobx-react-lite";
 import { useAppStore } from "../store/AppStoreProvider";
 
 function Home() {
-  const store = useAppStore();
-  const [inputValue, setInputValue] = useState("");
+  const appStore = useAppStore();
+  const [customerName, setCustomerName] = useState("");
+  const [customerEmail, setCustomerEmail] = useState("");
+  const [productId, setProductId] = useState("");
+  const [productName, setProductName] = useState("");
+  const [productPrice, setProductPrice] = useState(0);
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setInputValue(e.target.value);
+  const handleCustomerDataSubmit = () => {
+    appStore.setCustomerData({ name: customerName, email: customerEmail });
   };
 
-  const handleSaveData = () => {
-    store.setData(inputValue);
+  const handleProductDataSubmit = () => {
+    appStore.setProductData({
+      id: productId,
+      name: productName,
+      price: productPrice,
+    });
   };
 
   return (
     <div>
-      <h2>Home</h2>
-      <input type="text" value={inputValue} onChange={handleInputChange} />
-      <button onClick={handleSaveData}>Tallenna</button>
+      <h1>Home Component</h1>
+      <div>
+        <h2>Customer Data</h2>
+        <input
+          type="text"
+          placeholder="Name"
+          value={customerName}
+          onChange={(e) => setCustomerName(e.target.value)}
+        />
+        <input
+          type="text"
+          placeholder="Email"
+          value={customerEmail}
+          onChange={(e) => setCustomerEmail(e.target.value)}
+        />
+        <button onClick={handleCustomerDataSubmit}>Set Customer Data</button>
+      </div>
+      <div>
+        <h2>Product Data</h2>
+        <input
+          type="text"
+          placeholder="ID"
+          value={productId}
+          onChange={(e) => setProductId(e.target.value)}
+        />
+        <input
+          type="text"
+          placeholder="Name"
+          value={productName}
+          onChange={(e) => setProductName(e.target.value)}
+        />
+        <input
+          type="number"
+          placeholder="Price"
+          value={productPrice}
+          onChange={(e) => setProductPrice(Number(e.target.value))}
+        />
+        <button onClick={handleProductDataSubmit}>Set Product Data</button>
+      </div>
     </div>
   );
 }
 
-export default observer(Home);
+export default Home;
